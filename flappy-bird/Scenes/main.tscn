@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsmcs7gpmx1we"]
+
+[ext_resource type="Script" uid="uid://dd1ggivgkp7kt" path="res://Scripts/game_manager.gd" id="1_6bp64"]
+[ext_resource type="Texture2D" uid="uid://bd8cm7whuqxf7" path="res://flappy-bird-assets-master/sprites/background-day.png" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://bulrsc5007f2v" path="res://Scenes/scrolling_ground.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://flrdfueqrjgc" path="res://Scenes/bird.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://b0r7dhqoj878b" path="res://Scenes/pipe_spawner.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://bdg8lbm25tm0g" path="res://Scenes/fade.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://ddjo2vqras1re" path="res://Scenes/ui.tscn" id="7_344ge"]
+
+[node name="Main" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_6bp64")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(288, 512)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_jjgbg")
+
+[node name="ScrollingGround" parent="." instance=ExtResource("2_bo1nx")]
+position = Vector2(168, 455)
+
+[node name="Bird" parent="." instance=ExtResource("3_8gbba")]
+position = Vector2(126, 188)
+
+[node name="PipeSpawner" parent="." instance=ExtResource("4_jjvhh")]
+
+[node name="Fade" parent="." instance=ExtResource("5_kry3j")]
+
+[node name="UI" parent="." instance=ExtResource("7_344ge")]

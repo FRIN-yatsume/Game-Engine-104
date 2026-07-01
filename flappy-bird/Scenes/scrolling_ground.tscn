@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bulrsc5007f2v"]
+
+[ext_resource type="Script" uid="uid://c5xqoaiox6r33" path="res://Scripts/scrolling_ground.gd" id="1_5unqo"]
+[ext_resource type="Texture2D" uid="uid://bxeqrfh4n76w7" path="res://flappy-bird-assets-master/sprites/base.png" id="1_45sg5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5unqo"]
+size = Vector2(336, 112)
+
+[node name="ScrollingGround" type="Node2D"]
+script = ExtResource("1_5unqo")
+
+[node name="Ground1" type="Area2D" parent="."]
+
+[node name="Sprite1" type="Sprite2D" parent="Ground1"]
+texture = ExtResource("1_45sg5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground1"]
+shape = SubResource("RectangleShape2D_5unqo")
+
+[node name="Ground2" type="Area2D" parent="."]
+position = Vector2(336, 0)
+
+[node name="Sprite2" type="Sprite2D" parent="Ground2"]
+texture = ExtResource("1_45sg5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+shape = SubResource("RectangleShape2D_5unqo")
+
+[connection signal="body_entered" from="Ground1" to="." method="_on_ground_1_body_entered"]
+[connection signal="body_entered" from="Ground2" to="." method="_on_ground_1_body_entered"]
