@@ -1,32 +1,65 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsmcs7gpmx1we"]
+[gd_scene format=3 uid="uid://bsmcs7gpmx1we"]
 
 [ext_resource type="Script" uid="uid://dd1ggivgkp7kt" path="res://Scripts/game_manager.gd" id="1_6bp64"]
+[ext_resource type="Script" uid="uid://dss3pkoebidj3" path="res://Scripts/hit_effects.gd" id="1_hitefx"]
 [ext_resource type="Texture2D" uid="uid://bd8cm7whuqxf7" path="res://flappy-bird-assets-master/sprites/background-day.png" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bulrsc5007f2v" path="res://Scenes/scrolling_ground.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://28nnre8d5gjg" path="res://Scripts/collision_debug_visualizer.gd" id="2_debug"]
 [ext_resource type="PackedScene" uid="uid://flrdfueqrjgc" path="res://Scenes/bird.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://b0r7dhqoj878b" path="res://Scenes/pipe_spawner.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bdg8lbm25tm0g" path="res://Scenes/fade.tscn" id="5_kry3j"]
 [ext_resource type="PackedScene" uid="uid://ddjo2vqras1re" path="res://Scenes/ui.tscn" id="7_344ge"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=244350226]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=77271890]
+position = Vector2(144, 256)
+
+[node name="GameManager" type="Node" parent="." unique_id=1411103420]
 script = ExtResource("1_6bp64")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="HitEffects" type="Node" parent="GameManager" unique_id=1728318585]
+script = ExtResource("1_hitefx")
+flash_frequency = 9.0
+flash_loops = 3
+bird_flash_frequency = 6.0
+bird_flash_loops = 4
+shake_intensity = 10.0
+
+[node name="CollisionDebugVisualizer" type="Node" parent="GameManager" unique_id=254758058]
+script = ExtResource("2_debug")
+
+[node name="Background" type="TextureRect" parent="." unique_id=976925025]
 custom_minimum_size = Vector2(288, 512)
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_jjgbg")
 
-[node name="ScrollingGround" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(168, 455)
+[node name="ScrollingGround" parent="." unique_id=1022945419 instance=ExtResource("2_bo1nx")]
+position = Vector2(168, 515.43)
 
-[node name="Bird" parent="." instance=ExtResource("3_8gbba")]
+[node name="Bird" parent="." unique_id=874090042 instance=ExtResource("3_8gbba")]
 position = Vector2(126, 188)
+weight_gravity_factor = 0.35
+visual_scale_per_weight = 0.5
 
-[node name="PipeSpawner" parent="." instance=ExtResource("4_jjvhh")]
+[node name="PipeSpawner" parent="." unique_id=1536820199 instance=ExtResource("4_jjvhh")]
+cycle_active_duration = 10.0
+food_spawn_interval = 1.5
+must_break_energy_ratio = 0.3
+loss_max_early = 4
+loss_max_late = 5
+energy_max = 6
+gap_collision_multiplier = 1.7
+pipe_spawn_interval_night = 2.0
+food_spawn_interval_night = 5.0
+loss_min_early_night = 2
+loss_max_early_night = 4
+loss_min_late_night = 3
+loss_max_late_night = 6
+energy_min_night = 4
+energy_max_night = 7
 
-[node name="Fade" parent="." instance=ExtResource("5_kry3j")]
+[node name="Fade" parent="." unique_id=1027080455 instance=ExtResource("5_kry3j")]
 
-[node name="UI" parent="." instance=ExtResource("7_344ge")]
+[node name="UI" parent="." unique_id=989297257 instance=ExtResource("7_344ge")]

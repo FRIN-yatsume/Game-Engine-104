@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://flrdfueqrjgc"]
+[gd_scene format=3 uid="uid://flrdfueqrjgc"]
 
 [ext_resource type="Script" uid="uid://dyr1lgmfppkv" path="res://Scripts/bird.gd" id="1_vl8r2"]
-[ext_resource type="Texture2D" uid="uid://c3m5tuub5idmb" path="res://flappy-bird-assets-master/sprites/yellowbird-downflap.png" id="2_rr33m"]
-[ext_resource type="Texture2D" uid="uid://cqy5h7vugp5ov" path="res://flappy-bird-assets-master/sprites/yellowbird-midflap.png" id="3_xf4a6"]
-[ext_resource type="Texture2D" uid="uid://bc6ovcf5ssshi" path="res://flappy-bird-assets-master/sprites/yellowbird-upflap.png" id="4_pfwoh"]
-[ext_resource type="Texture2D" uid="uid://f6b7ghvplq27" path="res://flappy-bird-assets-master/sprites/message.png" id="5_rr33m"]
+[ext_resource type="Texture2D" uid="uid://cknoxc5bn88b2" path="res://flappy-bird-assets-master/sprites/yellowbird-downflap.png" id="2_rr33m"]
+[ext_resource type="Texture2D" uid="uid://cj5sj0h3dt6mc" path="res://flappy-bird-assets-master/sprites/yellowbird-midflap.png" id="3_xf4a6"]
+[ext_resource type="Texture2D" uid="uid://dldgsv5sy66s6" path="res://flappy-bird-assets-master/sprites/yellowbird-upflap.png" id="4_pfwoh"]
+[ext_resource type="Texture2D" uid="uid://f7gexu8ldxym" path="res://flappy-bird-assets-master/sprites/yellowbird-downflap-light.png" id="5_om1ab"]
+[ext_resource type="Texture2D" uid="uid://8jt8cnf3kmir" path="res://flappy-bird-assets-master/sprites/message.png" id="5_rr33m"]
+[ext_resource type="PackedScene" uid="uid://cactoqqulyoum" path="res://Scenes/digit_display.tscn" id="6_digit"]
+[ext_resource type="Texture2D" uid="uid://ja77mthqta33" path="res://flappy-bird-assets-master/sprites/yellowbird-midflap-light.png" id="6_oc6qe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_om1ab"]
 animations = [{
@@ -18,27 +21,51 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_pfwoh")
 }],
-"loop": false,
+"loop": 0,
 "name": &"flap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xf4a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_om1ab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rr33m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pfwoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oc6qe")
+}],
+"loop": false,
+"name": &"hit",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oc6qe"]
 radius = 14.0
 
-[node name="Bird" type="CharacterBody2D"]
+[node name="Bird" type="CharacterBody2D" unique_id=1420194710]
 script = ExtResource("1_vl8r2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="SpriteHolder" type="Node2D" parent="." unique_id=1176811170]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteHolder" unique_id=2123878070]
 sprite_frames = SubResource("SpriteFrames_om1ab")
 animation = &"flap"
 frame = 2
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2113822614]
 shape = SubResource("CircleShape2D_oc6qe")
 
-[node name="Instructions" type="Sprite2D" parent="."]
+[node name="DigitDisplay" parent="." unique_id=1920389208 instance=ExtResource("6_digit")]
+
+[node name="Instructions" type="Sprite2D" parent="." unique_id=526530898]
 show_behind_parent = true
 top_level = true
 position = Vector2(144, 200)

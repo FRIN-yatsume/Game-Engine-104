@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dx2rg6qrlsra4" path="res://Scripts/pipes.gd" id="1_7ktcp"]
 [ext_resource type="Texture2D" uid="uid://cxcromby75syw" path="res://flappy-bird-assets-master/sprites/pipe-green.png" id="1_uhra5"]
+[ext_resource type="PackedScene" uid="uid://c8digitdisplay01" path="res://Scenes/digit_display.tscn" id="3_digit"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ktcp"]
-size = Vector2(45, 317)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws3sl"]
-size = Vector2(48, 317)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pipe"]
+size = Vector2(52, 320)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3813"]
 size = Vector2(20, 180)
@@ -23,8 +21,9 @@ rotation = 3.1415927
 texture = ExtResource("1_uhra5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
-position = Vector2(0.5, -1.5)
-shape = SubResource("RectangleShape2D_7ktcp")
+shape = SubResource("RectangleShape2D_pipe")
+
+[node name="TopDigitDisplay" parent="TopPipe" instance=ExtResource("3_digit")]
 
 [node name="BottomPipe" type="Area2D" parent="."]
 position = Vector2(0, 300)
@@ -33,8 +32,9 @@ position = Vector2(0, 300)
 texture = ExtResource("1_uhra5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
-position = Vector2(-2, 0.5)
-shape = SubResource("RectangleShape2D_ws3sl")
+shape = SubResource("RectangleShape2D_pipe")
+
+[node name="BottomDigitDisplay" parent="BottomPipe" instance=ExtResource("3_digit")]
 
 [node name="ScoreArea" type="Area2D" parent="."]
 position = Vector2(52, 0)

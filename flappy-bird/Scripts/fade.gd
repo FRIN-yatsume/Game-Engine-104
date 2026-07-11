@@ -1,3 +1,4 @@
+# 游戏结束时的淡出动画效果
 class_name FadeEffect extends Node
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
