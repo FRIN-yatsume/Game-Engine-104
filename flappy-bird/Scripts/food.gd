@@ -5,6 +5,7 @@ class_name Food extends Area2D
 const BASE_SCALE: float = 0.7
 const SCALE_PER_ENERGY: float = 0.18
 const DIGIT_MARGIN: float = 4.0
+const DIGIT_OFFSET_UP: float = 20
 const IDLE_ANIM := "idle"
 
 @export var pickup_padding: float = 1.05
@@ -77,7 +78,7 @@ func _update_digit_display_position() -> void:
 
 	var visual_scale := get_visual_scale()
 	var sprite_half_height := _get_frame_size().y * visual_scale * 0.5
-	digit_display.position = Vector2(0.0, -(sprite_half_height + DIGIT_MARGIN))
+	digit_display.position = Vector2(0.0, -(sprite_half_height + DIGIT_MARGIN + DIGIT_OFFSET_UP))
 
 
 # --- 拾取与移动 ---
