@@ -40,23 +40,21 @@ position = Vector2(168, 515.43)
 
 [node name="Bird" parent="." unique_id=874090042 instance=ExtResource("3_8gbba")]
 position = Vector2(126, 188)
-weight_gravity_factor = 0.35
-visual_scale_per_weight = 0.5
+weight_gravity_factor = 0.3
+visual_scale_per_weight = 0.3
 
 [node name="PipeSpawner" parent="." unique_id=1536820199 instance=ExtResource("4_jjvhh")]
 cycle_active_duration = 10.0
 food_spawn_interval = 1.5
 must_break_energy_ratio = 0.3
-loss_max_early = 4
-loss_max_late = 5
-energy_max = 6
-gap_collision_multiplier = 1.7
+loss_max_early = 3
+gap_collision_multiplier = 2.0
 pipe_spawn_interval_night = 2.0
 food_spawn_interval_night = 5.0
+gap_collision_multiplier_night = 1.7
 loss_min_early_night = 2
 loss_max_early_night = 4
-loss_min_late_night = 3
-loss_max_late_night = 6
+loss_max_late_night = 5
 energy_min_night = 4
 energy_max_night = 7
 
