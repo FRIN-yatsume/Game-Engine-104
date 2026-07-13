@@ -7,6 +7,7 @@ extends Node
 @onready var wing_player: AudioStreamPlayer = $WingPlayer
 @onready var point_player: AudioStreamPlayer = $PointPlayer
 @onready var hit_player: AudioStreamPlayer = $HitPlayer
+@onready var hit_pipe_player: AudioStreamPlayer = $HitPipePlayer
 
 
 func play_wing() -> void:
@@ -25,6 +26,10 @@ func play_point(_score: int) -> void:
 	if _score == 0:
 		return
 	play_point_sfx()
+
+
+func play_hit_pipe() -> void:
+	hit_pipe_player.play()
 
 
 # --- 撞地/撞管：先播放 hit，再播放 die ---

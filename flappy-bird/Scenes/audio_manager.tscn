@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1ow7vky63thv"]
+[gd_scene load_steps=8 format=3 uid="uid://b1ow7vky63thv"]
 
 [ext_resource type="Script" uid="uid://82f55gy5nm7a" path="res://Scripts/audio_manager.gd" id="1_mjqhu"]
 [ext_resource type="AudioStream" uid="uid://bwh7vddj2rwo1" path="res://flappy-bird-assets-master/audio/swoosh.ogg" id="2_5kf6k"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bk1fnd86nrq3h" path="res://flappy-bird-assets-master/audio/wing.ogg" id="4_lwpe1"]
 [ext_resource type="AudioStream" uid="uid://bkpxrwbg8jk30" path="res://flappy-bird-assets-master/audio/point.ogg" id="5_jmilc"]
 [ext_resource type="AudioStream" uid="uid://c1s2hdseem3q3" path="res://flappy-bird-assets-master/audio/hit.ogg" id="6_5nrbi"]
+[ext_resource type="AudioStream" path="res://flappy-bird-assets-master/audio/Hit-pipe.wav" id="7_hitpipe"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_mjqhu")
@@ -24,3 +25,6 @@ stream = ExtResource("5_jmilc")
 
 [node name="HitPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_5nrbi")
+
+[node name="HitPipePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hitpipe")

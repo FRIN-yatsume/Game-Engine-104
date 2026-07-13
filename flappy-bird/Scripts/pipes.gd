@@ -3,6 +3,7 @@ class_name Pipes extends Node2D
 
 const GAP_CENTER_Y: float = 73.0
 const WHITE_FLASH_SHADER := preload("res://Shaders/white_flash.gdshader")
+const BROKEN_PIPE_TEXTURE := preload("res://flappy-bird-assets-master/sprites/pipe-red.png")
 
 @export_range(0.0, 0.5) var digit_position_ratio: float = 0.2
 
@@ -12,6 +13,7 @@ var loss: int = 1
 var gap: float = 134.0
 var is_must_break: bool = false
 var is_breaking: bool = false
+var _hit_pipe: Area2D = null
 
 # --- 节点引用 ---
 @onready var top_pipe: Area2D = $TopPipe
@@ -114,6 +116,10 @@ func break_apart() -> void:
 	score_area.set_deferred("monitoring", false)
 	screen_notifier.set_deferred("monitorable", false)
 
+	if _hit_pipe != null:
+		_apply_broken_texture(_hit_pipe)
+	AudioManager.play_hit_pipe()
+
 	SignalBus.add_point()
 
 	var hit_effects: Node = get_tree().get_first_node_in_group("hit_effects")
@@ -179,6 +185,11 @@ func _set_flash_mix(shader_mat: ShaderMaterial, amount: float) -> void:
 	shader_mat.set_shader_parameter("mix_amount", amount)
 
 
+func _apply_broken_texture(pipe: Area2D) -> void:
+	var sprite := pipe.get_node("Sprite2D") as Sprite2D
+	sprite.texture = BROKEN_PIPE_TEXTURE
+
+
 func _physics_process(delta: float) -> void:
 	position.x += speed * delta
 
@@ -192,6 +203,14 @@ func _on_point_scored(body: CharacterBody2D) -> void:
 
 
 func _on_top_pipe_body_entered(body: Node2D) -> void:
+	_handle_pipe_collision(body, top_pipe)
+
+
+func _on_bottom_pipe_body_entered(body: Node2D) -> void:
+	_handle_pipe_collision(body, bottom_pipe)
+
+
+func _handle_pipe_collision(body: Node2D, hit_pipe: Area2D) -> void:
 	if is_breaking:
 		return
 	if body.name != "Bird":
@@ -207,6 +226,7 @@ func _on_top_pipe_body_entered(body: Node2D) -> void:
 	if hit_effects != null:
 		hit_effects.trigger_bird_hit_flash(bird.animated_sprite_2d)
 
+	_hit_pipe = hit_pipe
 	if bird.lose_weight(loss):
 		break_apart()
 	else:
